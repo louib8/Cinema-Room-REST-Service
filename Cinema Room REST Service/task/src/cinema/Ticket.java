@@ -27,13 +27,10 @@ public class Ticket {
     }
 
     public static boolean ticketAvailable(Theater theater, Seat seat) {
-        for (var availSeat : theater.getSeating().getAvailableSeats()) {
-            if (availSeat.getRow() == seat.getRow() && availSeat.getColumn() == seat.getColumn() && availSeat.getPrice().equals(seat.getPrice())) {
-                return true;
-            }
+        Pair<Integer, Integer> key = new Pair<>(seat.getRow(), seat.getColumn());
+        if (theater.getSeating().getAvailableSeats().containsKey(key)) {
+            return true;
         }
         return false;
     }
-
-
 }

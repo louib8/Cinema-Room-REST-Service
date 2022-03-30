@@ -1,5 +1,8 @@
 package cinema;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -8,11 +11,10 @@ public class Seat {
     private int column;
     private BigDecimal price;
 
-    public Seat() {
-        this.price = row <= 4 ? new BigDecimal(10) : new BigDecimal(8);
-    }
-
-    public Seat(int row, int column) {
+@JsonCreator
+    public Seat(
+            @JsonProperty("row") int row,
+            @JsonProperty("column") int column) {
         this.row = row;
         this.column = column;
         this.price = row <= 4 ? new BigDecimal(10) : new BigDecimal(8);
